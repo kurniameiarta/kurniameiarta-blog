@@ -4,8 +4,28 @@ namespace App\Controllers;
 
 class Home extends BaseController
 {
-    public function index(): string
+    public function index()
     {
-        return view('home');
+        $postModel = new \App\Models\Posts();
+        // humanize
+
+        $data = [
+            'title' => 'Home',
+            'active' => 'home',
+            'posts' => $postModel->getLastPosts()
+        ];
+        return view('home', $data);
+    }
+
+    public function detail($slug)
+    {
+        helper('my_helper');
+        $postModel = new \App\Models\Posts();
+        $data = [
+            'title' => 'Detail Post',
+            'active' => 'post',
+            'post' => $postModel->getPostBySlug($slug)
+        ];
+        return view('detail_post', $data);
     }
 }

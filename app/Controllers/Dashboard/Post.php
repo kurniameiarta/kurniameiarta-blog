@@ -22,6 +22,7 @@ class Post extends BaseController
 
     public function index()
     {
+        helper('my_helper');
         $data = [
             'title' => 'Post',
             'active' => 'post',

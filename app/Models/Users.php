@@ -4,19 +4,20 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Posts extends Model
+class Users extends Model
 {
-    protected $table            = 'posts';
-    protected $primaryKey       = 'id_post';
+    protected $table            = 'users';
+    // protected $primaryKey       = 'id';
     // protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'id_post',
-        'title',
-        'slug',
-        'body',
+        'id_user',
+        'username',
+        'password',
+        'email',
+        'role',
         'created_at',
         'updated_at',
     ];
@@ -45,39 +46,18 @@ class Posts extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-    public function getPosts()
+    public function getUsers()
     {
         return $this->findAll();
     }
 
-    public function getLastPosts($limit = 5)
+    public function updateUser($id_user, $data)
     {
-        $query = $this->select('*')->orderBy('created_at', 'DESC')->limit($limit)->get()->getResultArray();
-        return $query;
+        $this->update($id_user, $data);
     }
 
-    public function getPost($id_post)
+    public function deleteUser($id_user)
     {
-        return $this->find($id_post);
-    }
-
-    public function getPostBySlug($slug)
-    {
-        return $this->where(['slug' => $slug])->first();
-    }
-
-    public function addPost($data)
-    {
-        return $this->insert($data);
-    }
-
-    public function updatePost($id_post, $data)
-    {
-        return $this->update($id_post, $data);
-    }
-
-    public function deletePost($id_post)
-    {
-        return $this->delete($id_post);
+        $this->delete($id_user);
     }
 }

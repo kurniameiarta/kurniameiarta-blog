@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Dashboard 3</title>
+  <title>WSW Blog Dashboard - <?php isset($title) ? print($title) : '' ?></title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -87,7 +87,7 @@
   <!-- AdminLTE for demo purposes -->
   <script src="<?= base_url('dashboard/dist/js/demo.js') ?>"></script>
   <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-  <script src="<?= base_url('dashboard/dist/js/pages/dashboard3.js') ?>"></script>
+  <!-- <script src="<?= base_url('dashboard/dist/js/pages/dashboard3.js') ?>"></script> -->
 </body>
 
 </html>
