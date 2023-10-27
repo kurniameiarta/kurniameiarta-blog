@@ -42,13 +42,28 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="<?= base_url('admin/post') ?>" class="nav-link <?= $active  == 'post' ? 'active' : '' ?>">
+                <li class="nav-item menu-open">
+                    <a href="#" class="nav-link <?= $active  == 'post' ? 'active' : '' ?>">
                         <i class="nav-icon fa-solid fa-pencil"></i>
                         <p>
                             Posts
+                            <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="<?= base_url('admin/post') ?>" class="nav-link">
+                                <i class="nav-icon fa-solid fa-list"></i>
+                                <p>View Post</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= base_url('admin/post/add') ?>" class="nav-link">
+                                <i class="nav-icon fa-solid fa-plus"></i>
+                                <p>New Post</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <!-- <li class="nav-item ">
                     <a href="#" class="nav-link">
