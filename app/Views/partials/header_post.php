@@ -5,11 +5,11 @@
             <div class="col-md-10 col-lg-8 col-xl-7">
                 <div class="post-heading">
                     <h1><?= $post['title'] ?></h1>
-                    <h2 class="subheading"><?= subtitle($post['body']) ?></h2>
+                    <!-- <h2 class="subheading"><?= subtitle($post['body']) ?></h2> -->
                     <span class="meta">
                         Posted by
                         <a href="#">wahyusinggihw</a>
-                        on <?= date('F j - Y, g:i ', strtotime($post['created_at'])) ?>
+                        on <?= date('F j - Y, H:i ', strtotime($post['created_at'])) ?>
                     </span>
                 </div>
             </div>

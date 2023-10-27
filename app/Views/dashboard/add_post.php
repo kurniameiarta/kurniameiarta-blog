@@ -5,7 +5,7 @@
 
     <div class="card card-primary">
         <div class="card-header">
-            <h3 class="card-title">Make a Post</h3>
+            <h3 class="card-title">Make a Post.</h3>
         </div>
 
         <form action="<?= base_url('admin/post/store') ?>" method="post" enctype="multipart/form-data">
@@ -40,11 +40,29 @@
             </div>
 
             <div class="card-footer">
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-secondary" value="publish">Save as draft</button>
+                <button type="submit" class="btn btn-primary" value="draft">Submit</button>
             </div>
         </form>
     </div>
 </div>
 
+<style>
+    .ck-editor__editable_inline {
+        min-height: 200px;
+    }
+</style>
+
+<script src="https://cdn.ckeditor.com/ckeditor5/29.0.0/classic/ckeditor.js"></script>
+<script>
+    ClassicEditor
+        .create(document.querySelector('#body'))
+        .then(editor => {
+            console.log(editor);
+        })
+        .catch(error => {
+            console.error(error);
+        });
+</script>
 
 <?= $this->endSection(); ?>

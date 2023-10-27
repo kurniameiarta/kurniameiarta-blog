@@ -17,6 +17,7 @@ class Posts extends Model
         'title',
         'slug',
         'body',
+        'status',
         'created_at',
         'updated_at',
     ];
@@ -52,7 +53,7 @@ class Posts extends Model
 
     public function getLastPosts($limit = 5)
     {
-        $query = $this->select('*')->orderBy('created_at', 'DESC')->limit($limit)->get()->getResultArray();
+        $query = $this->select('*')->where('status', 'published')->orderBy('created_at', 'DESC')->limit($limit)->get()->getResultArray();
         return $query;
     }
 

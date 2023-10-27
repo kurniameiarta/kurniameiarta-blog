@@ -51,6 +51,11 @@ class Users extends Model
         return $this->findAll();
     }
 
+    public function getUserByUsername($username)
+    {
+        return $this->where('username', $username)->first();
+    }
+
     public function updateUser($id_user, $data)
     {
         $this->update($id_user, $data);

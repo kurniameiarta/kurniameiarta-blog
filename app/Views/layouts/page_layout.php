@@ -21,7 +21,22 @@
     <!-- Navigation-->
     <?= $this->include('partials/navbar'); ?>
     <!-- Page Header-->
-    <?= $this->include('partials/header'); ?>
+    <?php
+    // Check the current route and include the corresponding header
+    switch ($routeName) {
+        case 'home':
+            echo $this->include('partials/header_home');
+            break;
+        case 'about':
+            echo $this->include('partials/header_about');
+            break;
+        case 'contact':
+            echo $this->include('partials/header_contact');
+            break;
+        default:
+            echo $this->include('partials/header');
+    }
+    ?>
 
     <!-- Main Content-->
     <div class="container px-4 px-lg-5">
@@ -29,10 +44,7 @@
             <div class="col-md-10 col-lg-8 col-xl-7">
                 <!-- Post preview-->
                 <?= $this->renderSection('content'); ?>
-                <!-- Divider-->
-                <hr class="my-4" />
-                <!-- Pager-->
-                <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">Older Posts →</a></div>
+
             </div>
         </div>
     </div>

@@ -12,6 +12,7 @@ class Home extends BaseController
         $data = [
             'title' => 'Home',
             'active' => 'home',
+            'routeName' => $this->request->getPath(),
             'posts' => $postModel->getLastPosts()
         ];
         return view('home', $data);

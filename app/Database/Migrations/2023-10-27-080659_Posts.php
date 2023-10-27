@@ -24,6 +24,11 @@ class Posts extends Migration
             'body' => [
                 'type' => 'TEXT',
             ],
+            'status' => [
+                'type' => 'ENUM',
+                'constraint' => ['draft', 'published'],
+                'default' => 'draft',
+            ],
             'created_at' => [
                 'type' => 'DATETIME',
                 'null' => true,

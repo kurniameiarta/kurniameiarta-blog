@@ -1,6 +1,6 @@
 <?php
 
-function subtitle($str)
+function subtitle($str, $length = 50)
 {
-    return substr($str, 0, 50) . '...';
+    return substr($str, 0, $length) . '...';
 }

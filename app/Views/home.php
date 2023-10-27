@@ -12,9 +12,14 @@
         <p class="post-meta">
             Posted by
             <a href="#">wahyusinggihw</a>
-            on <?= date('F j - Y, g:i ', strtotime($post['created_at'])) ?>
+            on <?= date('F j - Y, H:i ', strtotime($post['updated_at'])) ?>
         </p>
     </div>
+    <!-- Divider-->
+    <hr class="my-4" />
 <?php endforeach; ?>
+
+<!-- Pager-->
+<div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">Older Posts →</a></div>
 
 <?= $this->endSection(); ?>

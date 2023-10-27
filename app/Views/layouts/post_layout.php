@@ -21,7 +21,7 @@
     <!-- Navigation-->
     <?= $this->include('partials/navbar'); ?>
     <!-- Page Header-->
-    <?= $this->include('partials/post_header'); ?>
+    <?= $this->include('partials/header_post'); ?>
     <!-- Post Content-->
     <article class="mb-4">
         <div class="container px-4 px-lg-5">

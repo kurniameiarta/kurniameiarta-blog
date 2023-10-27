@@ -18,17 +18,27 @@ class Post extends BaseController
         $this->PostModel = new Posts();
         $this->uuid = Uuid::uuid4();
         $this->slug = new Slugify();
+        helper('my_helper');
     }
 
     public function index()
     {
-        helper('my_helper');
         $data = [
             'title' => 'Post',
             'active' => 'post',
             'posts' => $this->PostModel->getPosts()
         ];
         return view('dashboard/post', $data);
+    }
+
+    public function view($slug)
+    {
+        $data = [
+            'title' => 'View Post',
+            'active' => 'post',
+            'post' => $this->PostModel->getPostBySlug($slug)
+        ];
+        return view('dashboard/view_post', $data);
     }
 
     public function add()
@@ -42,6 +52,7 @@ class Post extends BaseController
 
     public function store()
     {
+        dd($this->request->getPost());
         $validate = $this->validationForm();
 
         if (!$validate) {
@@ -53,6 +64,7 @@ class Post extends BaseController
             'title' => $this->request->getPost('title'),
             'slug' => $this->slug->slugify($this->request->getVar('title')),
             'body' => $this->request->getPost('body'),
+            'status' => 'draft',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ];
@@ -83,6 +95,7 @@ class Post extends BaseController
             'title' => $this->request->getPost('title'),
             'slug' => $this->slug->slugify($this->request->getVar('title')),
             'body' => $this->request->getPost('body'),
+            'status' => $this->request->getPost('status'),
             'updated_at' => date('Y-m-d H:i:s'),
         ];
 
@@ -91,6 +104,19 @@ class Post extends BaseController
         $this->PostModel->updatePost($id, $data);
         return redirect()->to('/admin/post')->with('success', 'Post has been updated');
     }
+
+    public function updateStatus($id)
+    {
+        $data = [
+            'status' => $this->request->getPost('status'),
+            'updated_at' => date('Y-m-d H:i:s'),
+        ];
+
+        $this->PostModel->updatePost($id, $data);
+        return redirect()->to('/admin/post')->with('success', 'Post has been updated');
+    }
+
+
 
     public function delete($id)
     {

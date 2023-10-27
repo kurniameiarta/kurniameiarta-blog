@@ -5,12 +5,13 @@
 
     <div class="card card-warning">
         <div class="card-header">
-            <h3 class="card-title">Make a Post</h3>
+            <h3 class="card-title">Edit your post.</h3>
         </div>
 
         <form action="<?= base_url('admin/post/update/' . $post['id_post']) ?>" method="post" enctype="multipart/form-data">
             <?= csrf_field() ?>
             <input type="hidden" id="id_post" name="id_post" value="<?= $post['id_post'] ?>">
+            <input type="hidden" id="status" name="status" value="<?= $post['status'] ?>">
             <div class="card-body">
                 <div class="form-group">
                     <label for="text">Title</label>
@@ -47,5 +48,21 @@
     </div>
 </div>
 
+<script src="<?= base_url('ckeditor5-build-classic/ckeditor.js') ?>" type="text/javascript"></script>
+<style>
+    .ck-editor__editable_inline {
+        min-height: 200px;
+    }
+</style>
+<script>
+    ClassicEditor
+        .create(document.querySelector('#body'))
+        .then(editor => {
+            console.log(editor);
+        })
+        .catch(error => {
+            console.error(error);
+        });
+</script>
 
 <?= $this->endSection(); ?>
