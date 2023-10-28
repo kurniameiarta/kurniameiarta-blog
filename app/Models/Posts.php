@@ -48,7 +48,8 @@ class Posts extends Model
 
     public function getPosts()
     {
-        return $this->findAll();
+        $query = $this->select('*')->orderBy('updated_at', 'DESC')->get()->getResultArray();
+        return $query;
     }
 
     public function getLastPosts($limit = 5)

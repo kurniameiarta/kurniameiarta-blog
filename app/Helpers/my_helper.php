@@ -2,5 +2,5 @@
 
 function subtitle($str, $length = 50)
 {
-    return substr($str, 0, $length) . '...';
+    return substr(strip_tags($str), 0, $length) . '...';
 }

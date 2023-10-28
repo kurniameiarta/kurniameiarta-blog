@@ -81,7 +81,7 @@
             selector: 'td:first-child'
         },
         order: [
-            [1, 'asc']
+            [4, 'desc']
         ]
     });
 

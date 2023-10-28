@@ -28,6 +28,7 @@ class Post extends BaseController
             'active' => 'post',
             'posts' => $this->PostModel->getPosts()
         ];
+        // dd($data);
         return view('dashboard/post', $data);
     }
 
@@ -38,6 +39,7 @@ class Post extends BaseController
             'active' => 'post',
             'post' => $this->PostModel->getPostBySlug($slug)
         ];
+
         return view('dashboard/view_post', $data);
     }
 
@@ -52,18 +54,17 @@ class Post extends BaseController
 
     public function store()
     {
-        dd($this->request->getPost());
+        // dd($this->request->getPost());
         $validate = $this->validationForm();
 
         if (!$validate) {
             return redirect()->back()->withInput();
         }
-
         $data = [
             'id_post' => $this->uuid,
             'title' => $this->request->getPost('title'),
             'slug' => $this->slug->slugify($this->request->getVar('title')),
-            'body' => $this->request->getPost('body'),
+            'body' => $this->request->getPost('editor1'),
             'status' => 'draft',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
@@ -133,7 +134,7 @@ class Post extends BaseController
                     'required' => 'Title is required'
                 ]
             ],
-            'body' => [
+            'editor1' => [
                 'rules' => 'required',
                 'errors' => [
                     'required' => 'Body is required'
