@@ -17,6 +17,7 @@ class Posts extends Model
         'title',
         'slug',
         'body',
+        'image',
         'status',
         'created_at',
         'updated_at',

@@ -24,6 +24,10 @@ class Posts extends Migration
             'body' => [
                 'type' => 'TEXT',
             ],
+            'image' => [
+                'type' => 'VARCHAR',
+                'constraint' => 100,
+            ],
             'status' => [
                 'type' => 'ENUM',
                 'constraint' => ['draft', 'published'],

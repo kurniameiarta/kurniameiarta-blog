@@ -31,18 +31,21 @@
                         <div class="text-danger"><?= validation_show_error('editor1') ?></div>
                     <?php endif; ?>
                 </div>
-                <!-- <div class="form-group">
-                    <label for="image">Image</label>
+                <div class="form-group">
+                    <label for="image">Image (Optional)</label>
                     <div class="input-group">
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="image">
-                            <label class="custom-file-label" for="image">Choose file</label>
+                            <input type="file" class="custom-file-input <?= validation_show_error('image') ? 'is-invalid' : '' ?>" id=" image" name="image">
+                            <label class="custom-file-label" for="image">Choose file (Maximum size 1 MB)</label>
                         </div>
-                        <div class="input-group-append">
+                        <!-- <div class="input-group-append">
                             <span class="input-group-text">Upload</span>
-                        </div>
+                        </div> -->
                     </div>
-                </div> -->
+                    <?php if (validation_show_error('image')) : ?>
+                        <div class="text-danger"><?= validation_show_error('image') ?></div>
+                    <?php endif; ?>
+                </div>
             </div>
 
             <div class="card-footer">
@@ -82,32 +85,11 @@
 
 <script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/decoupled-document/ckeditor.js"></script>
 <script>
-    // DecoupledEditor
-    //     .create(document.querySelector('#editor'))
-    //     .then(editor => {
-    //         const toolbarContainer = document.querySelector('#toolbar-container');
-    //         toolbarContainer.appendChild(editor.ui.view.toolbar.element);
-    //         console.log(editor);
-    //     })
-    //     .catch(error => {
-    //         console.error(error);
-    //     });
-
-    // $(document).on('submit', '.submit', function(event) {
-    //     event.preventDefault(); // Prevent the default form submission
-
-    //     const html = CKEDITOR.instances.editor.getData(); // Get CKEditor content
-    //     $("#editor1").val(html);
-    //     // Now, you've set the CKEditor content to the hidden input field
-
-    //     // You can also check the value by logging it to the console
-    //     console.log($("#editor1").val());
-
-    //     // Finally, you can submit the form programmatically if needed
-    //     // $(this).submit();
-    // });
     DecoupledEditor
-        .create(document.querySelector('#editor'))
+        .create(document.querySelector('#editor'), {
+            // plugins: [Image],
+            // toolbar: ['imageUpload', '|', 'imageStyle:inline', 'imageStyle:block', 'imageStyle:side'],
+        })
         .then(editor => {
             const toolbarContainer = document.querySelector('#toolbar-container');
             toolbarContainer.appendChild(editor.ui.view.toolbar.element);

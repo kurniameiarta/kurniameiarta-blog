@@ -54,17 +54,28 @@ class Post extends BaseController
 
     public function store()
     {
-        // dd($this->request->getPost());
+        // dd($this->request->getPost(),);
         $validate = $this->validationForm();
 
         if (!$validate) {
             return redirect()->back()->withInput();
         }
+
+        $image = $this->request->getFile('image');
+
+        if ($image->getError() == 4) {
+            $imageName = 'default.jpg';
+        } else {
+            $imageName = $this->uuid . '.' . $image->getExtension();
+            $image->move('img/post', $imageName);
+        }
+
         $data = [
             'id_post' => $this->uuid,
             'title' => $this->request->getPost('title'),
             'slug' => $this->slug->slugify($this->request->getVar('title')),
             'body' => $this->request->getPost('editor1'),
+            'image' => $imageName,
             'status' => 'draft',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
@@ -86,6 +97,7 @@ class Post extends BaseController
 
     public function update($id)
     {
+        // dd($this->request->getPost());
         $validate = $this->validationForm();
 
         if (!$validate) {
@@ -95,10 +107,22 @@ class Post extends BaseController
         $data = [
             'title' => $this->request->getPost('title'),
             'slug' => $this->slug->slugify($this->request->getVar('title')),
-            'body' => $this->request->getPost('body'),
+            'body' => $this->request->getPost('editor1'),
+            'image' => $this->request->getVar('image'),
             'status' => $this->request->getPost('status'),
             'updated_at' => date('Y-m-d H:i:s'),
         ];
+
+        $newImage = $this->request->getFile('image');
+        if ($newImage->isValid() && !$newImage->hasMoved()) {
+            // Handle the new image upload
+            $imageName = $this->uuid . '.' . $newImage->getExtension();
+            $newImage->move('img/post', $imageName);
+            $data['image'] = $imageName;
+        } else {
+            // No new image uploaded, retain the current image path
+            $data['image'] = $this->request->getVar('current_image');
+        }
 
         // dd($data, $this->request->getPost('id_post'));
         // dd($data);
@@ -138,6 +162,14 @@ class Post extends BaseController
                 'rules' => 'required',
                 'errors' => [
                     'required' => 'Body is required'
+                ]
+            ],
+            'image' => [
+                'rules' =>  'max_size[image,1024]|is_image[image]|mime_in[image,image/jpg,image/jpeg,image/png]',
+                'errors' => [
+                    'max_size' => 'Image size is too big',
+                    'is_image' => 'File is not image',
+                    'mime_in' => 'File is not image'
                 ]
             ]
         ];

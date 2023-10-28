@@ -19,7 +19,10 @@
     <hr class="my-4" />
 <?php endforeach; ?>
 
-<!-- Pager-->
-<div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">Older Posts →</a></div>
-
+<?php if (!empty($posts)) : ?>
+    <?php if (count($posts) >= 5) : ?>
+        <!-- Pager-->
+        <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">Older Posts →</a></div>
+    <?php endif; ?>
+<?php endif; ?>
 <?= $this->endSection(); ?>

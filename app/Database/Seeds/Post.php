@@ -27,6 +27,7 @@ class Post extends Seeder
                 'title' => $title,
                 'slug' => $slug,
                 'body' => $content,
+                'image' => 'default.jpg',
                 'status' => 'draft',
                 'created_at' => $faker->date('Y-m-d H:i:s'),
                 'updated_at' => $faker->date('Y-m-d H:i:s'),
