@@ -49,7 +49,7 @@
             </div>
 
             <div class="card-footer">
-                <button type="submit" class="btn btn-secondary" value="draft">Save as draft</button>
+                <!-- <button type="submit" class="btn btn-secondary" value="draft">Save as draft</button> -->
                 <button type="submit" class="btn btn-primary" value="publish">Submit</button>
             </div>
         </form>

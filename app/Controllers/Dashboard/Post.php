@@ -26,6 +26,7 @@ class Post extends BaseController
         $data = [
             'title' => 'Post',
             'active' => 'post',
+            'activeChild' => 'view',
             'posts' => $this->PostModel->getPosts()
         ];
         // dd($data);
@@ -36,7 +37,7 @@ class Post extends BaseController
     {
         $data = [
             'title' => 'View Post',
-            'active' => 'post',
+            'active' => 'view',
             'post' => $this->PostModel->getPostBySlug($slug)
         ];
 
@@ -47,7 +48,8 @@ class Post extends BaseController
     {
         $data = [
             'title' => 'Add Post',
-            'active' => 'post'
+            'active' => 'post',
+            'activeChild' => 'add',
         ];
         return view('dashboard/add_post', $data);
     }
@@ -90,7 +92,8 @@ class Post extends BaseController
         $data = [
             'title' => 'Edit Post',
             'active' => 'post',
-            'post' => $this->PostModel->getPostBySlug($slug)
+            'activeChild' => 'edit',
+            'post' => $this->PostModel->getPostBySlug($slug),
         ];
         return view('dashboard/edit_post', $data);
     }

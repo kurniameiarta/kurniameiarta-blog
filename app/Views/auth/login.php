@@ -7,6 +7,8 @@
     <title>WSW Blog - <?php isset($title) ? print($title) : '' ?></title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+
     <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
 
     <style>
@@ -114,8 +116,14 @@
                 </div>
             </div>
             <div class="form-group">
-                <!-- <label for="password">Password</label> -->
-                <input class="form-control <?= validation_show_error('password') ? 'is-invalid' : '' ?>" value="<?= old('password') ?>" type="password" id="password" name="password" placeholder="Password">
+                <div class="input-group"> <!-- Use an input group for inline elements -->
+                    <input class="form-control <?= validation_show_error('password') ? 'is-invalid' : '' ?>" value="<?= old('password') ?>" type="password" id="password" name="password" placeholder="Password">
+                    <div class="input-group-append">
+                        <span class="input-group-text password-toggle" id="password-toggle">
+                            <i class="fas fa-eye"></i> <!-- Font Awesome eye icon -->
+                        </span>
+                    </div>
+                </div>
                 <div class="invalid-feedback">
                     <?= validation_show_error('password') ?>
                 </div>
@@ -128,6 +136,22 @@
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const passwordInput = document.getElementById('password');
+            const passwordToggle = document.getElementById('password-toggle');
+
+            passwordToggle.addEventListener('click', function() {
+                if (passwordInput.type === 'password') {
+                    passwordInput.type = 'text';
+                    passwordToggle.innerHTML = '<i class="fas fa-eye-slash"></i>'
+                } else {
+                    passwordInput.type = 'password';
+                    passwordToggle.innerHTML = '<i class="fas fa-eye"></i>'
+                }
+            });
+        });
+    </script>
 </body>
 
 

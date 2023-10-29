@@ -13,7 +13,7 @@
                 <img src="<?= base_url('dashboard/dist/img/user2-160x160.jpg') ?>" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Alexander Pierce</a>
+                <a href="#" class="d-block"><?= session()->get('user')['name'] ?></a>
             </div>
         </div>
 
@@ -52,13 +52,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?= base_url('admin/post') ?>" class="nav-link">
+                            <a href="<?= base_url('admin/post') ?>" class="nav-link <?= $activeChild  == 'view' ? 'active' : '' ?>">
                                 <i class="nav-icon fa-solid fa-list"></i>
                                 <p>View Post</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?= base_url('admin/post/add') ?>" class="nav-link">
+                            <a href="<?= base_url('admin/post/add') ?>" class="nav-link <?= $activeChild  == 'add' ? 'active' : '' ?>">
                                 <i class="nav-icon fa-solid fa-plus"></i>
                                 <p>New Post</p>
                             </a>

@@ -5,17 +5,15 @@
 
     <div class="card card-warning">
         <div class="card-header">
-            <h3 class="card-title">Edit your post.</h3>
+            <h3 class="card-title">Edit post</h3>
         </div>
 
         <form action="<?= base_url('admin/post/update/' . $post['id_post']) ?>" method="post" enctype="multipart/form-data">
             <?= csrf_field() ?>
             <input type="hidden" id="id_post" name="id_post" value="<?= $post['id_post'] ?>">
             <input type="hidden" id="status" name="status" value="<?= $post['status'] ?>">
-            <!-- Keep the hidden input for the current image -->
             <input type="hidden" id="current_image" name="current_image" value="<?= $post['image'] ?>">
 
-            <?php d(validation_list_errors(), $post['image']) ?>
             <div class="card-body">
                 <div class="form-group">
                     <label for="text">Title</label>

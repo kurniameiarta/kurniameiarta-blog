@@ -59,6 +59,18 @@ class Posts extends Model
         return $query;
     }
 
+    public function getDraftPosts()
+    {
+        $query = $this->select('*')->where('status', 'draft')->orderBy('created_at', 'DESC')->get()->getResultArray();
+        return $query;
+    }
+
+    public function getPublishedPosts()
+    {
+        $query = $this->select('*')->where('status', 'published')->orderBy('created_at', 'DESC')->get()->getResultArray();
+        return $query;
+    }
+
     public function getPost($id_post)
     {
         return $this->find($id_post);

@@ -79,9 +79,9 @@
 </nav>
 
 <script>
-    function showDeleteConfirmation(id) {
+    function showLogoutConfirmation(id) {
         Swal.fire({
-            title: 'Confirm',
+            title: 'Confirm Logout',
             text: 'Are you sure?',
             icon: 'warning',
             showCancelButton: true,
@@ -105,7 +105,7 @@
     // Attach the delete confirmation modal to each delete button
     document.querySelectorAll('.logout-button').forEach((button) => {
         const itemId = button.getAttribute('data-id');
-        button.addEventListener('click', () => showDeleteConfirmation(itemId));
+        button.addEventListener('click', () => showLogoutConfirmation(itemId));
     });
 </script>
 <!-- /.navbar -->
